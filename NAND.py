@@ -13,6 +13,8 @@ US_WRITE_MSB = 1500;
 
 US_ERASE_BLOCK = 1500;
 
+# Assume L L M L M L M ... L M M paired-page configuration
+
 def is_lsb(ppn):
 	if ppn == 0x7f:
 		return False;

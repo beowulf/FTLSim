@@ -45,7 +45,7 @@ def parse_argv():
 			nargs = '?',
 			default = "page",
 			choices = ["page", "dac"],
-			help = "FTL implementation");
+			help = "Select FTL implementation");
 	parser.add_argument(
 			'-no_backup',
 			action = 'store_true',
@@ -55,23 +55,23 @@ def parse_argv():
 			'-per_request',
 			action = 'store_true',
 			default = argparse.SUPPRESS,
-			help = "Do per-page backup scheme");
+			help = "Do per-request backup scheme (default: per-page)");
 	parser.add_argument(
-			'-clean_init',
+			'-init_empty',
 			action = 'store_true',
-			help = "Start with clean SSD instead of filled one");
+			help = "Start with empty SSD (default: filled SSD)");
 	parser.add_argument(
 			'-statistics_page',
 			nargs = '?',
 			type = argparse.FileType('w'),
 			default = argparse.SUPPRESS,
-			help = "Write out per-page timing statistics to the file");
+			help = "Save per-page timing statistics to the file");
 	parser.add_argument(
 			'-statistics_request',
 			nargs = '?',
 			type = argparse.FileType('w'),
 			default = argparse.SUPPRESS,
-			help = "Write out per-request timing statistics to the file");
+			help = "Save per-request timing statistics to the file");
 
 	# FTL-specific arguments
 	# For DAC
@@ -176,7 +176,7 @@ def main():
 		if k != "ftl":
 			trace("  " + k + " =", v, level = 1);
 
-	if not args.clean_init:
+	if not args.init_empty:
 		trace("- Fill up usable space ...", newline = False);
 		for req in range(int(SSD.BLOCKS * (1 - SSD.PROVISION_RATIO))):
 			sector_start = req * NAND.PAGES_PER_BLOCK * NAND.SECTORS_PER_PAGE;
