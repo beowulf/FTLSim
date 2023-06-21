@@ -1,4 +1,4 @@
-Simple FTL simulator, Copyright Sang-Hoon Kim <sanghoon@vt.edu>, 2017.
+Simple FTL simulator, Copyright Sang-Hoon Kim <sanghoonkim@ajou.ac.kr>, 2023.
 
 # Overview
 
